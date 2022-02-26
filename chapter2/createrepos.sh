@@ -1,10 +1,14 @@
 #!/bin/bash 
 
+docker image build -t awsnginx
+
+
 # Create the repository.
 aws ecr create-repository --repository-name deploy --profile training
 aws ecr list-images --repository-name deploy
 
 # Tag the images
+# Replace 173541030663 with your account id.  
 docker tag awsnginx:1.0 173541030663.dkr.ecr.eu-west-2.amazonaws.com/deploy:1.0
 docker image tag awsnginx:latest 173541030663.dkr.ecr.eu-west-2.amazonaws.com/deploy:amazonlinux2
 
